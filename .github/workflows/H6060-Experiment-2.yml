@@ -31,7 +31,7 @@ jobs:
           extra-pip-packages: build tox
 
       - name: Build and Upload Python Package
-        uses: seansmith39/H6060-Experiment-Resources/.github/actions/python/python-build-upload
+        uses: seansmith39/H6060-Experiment-Resources/.github/actions/python/python-build-upload@main
         with:
           build-command: python -m build --sdist
           build-directory: dist
