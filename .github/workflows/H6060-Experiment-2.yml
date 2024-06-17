@@ -1,0 +1,48 @@
+name: H6060 Experiment 1 - urllib3
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  security-events: write
+
+jobs:
+  build-application:
+    name: Build application
+    runs-on: ubuntu-latest
+    steps:
+        # Branched from tag 2.11.2
+      - name: Checkout GitHub Repository
+        uses: actions/checkout@v4
+
+      - name: Install Python 3.7
+        uses: actions/setup-python@v5.1.0
+        with:
+          python-version: 3.7
+
+      - name: Install Pip Dependencies
+        uses: seansmith39/H6060-Experiment-Resources/.github/actions/python/install-pip-dependencies@main
+        with:
+          requirement-file-name: docs/requirements.txt
+          extra-pip-packages: build tox
+
+      - name: Build and Upload Python Package
+        uses: seansmith39/H6060-Experiment-Resources/.github/actions/python/python-build-upload
+        with:
+          build-command: python -m build --sdist
+          build-directory: dist
+
+      - name: Run Tests
+        shell: bash
+        run: tox -e py37
+
+      - name: Upload Coverage XML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+          if-no-files-found: error

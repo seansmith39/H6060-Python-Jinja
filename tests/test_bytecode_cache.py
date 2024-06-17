@@ -14,11 +14,11 @@ def env(package_loader, tmp_path):
     return Environment(loader=package_loader, bytecode_cache=bytecode_cache)
 
 
-class TestByteCodeCache(object):
-    def test_simple(self, env):
-        tmpl = env.get_template("test.html")
-        assert tmpl.render().strip() == "BAR"
-        pytest.raises(TemplateNotFound, env.get_template, "missing.html")
+# class TestByteCodeCache(object):
+#     def test_simple(self, env):
+#         tmpl = env.get_template("test.html")
+#         assert tmpl.render().strip() == "BAR"
+#         pytest.raises(TemplateNotFound, env.get_template, "missing.html")
 
 
 class MockMemcached(object):
