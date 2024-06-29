@@ -97,10 +97,11 @@ jobs:
           build-directory: dist
 
       - name: Run Tests
-        shell: bash
+        if: ${{ inputs.sast-deepsource-enabled == true }}
         run: tox -e py37
 
       - name: Upload Coverage XML Report
+        if: ${{ inputs.sast-deepsource-enabled == true }}
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
