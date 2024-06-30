@@ -132,5 +132,6 @@ jobs:
       sast-snyk-code-enabled: ${{ inputs.sast-snyk-code-enabled }}
       project-name: H6060-Python-jinja
       sca-file-to-scan: docs/requirements.txt
-      eclipse-steady-workspace-token: REPLACE
+      eclipse-steady-workspace-token: 7443534A50EE14D92BD7D7B560F92A8C
       eclipse-steady-project-source-directories: src
+      build-directory: dist
