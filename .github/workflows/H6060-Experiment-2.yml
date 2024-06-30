@@ -108,6 +108,9 @@ jobs:
           path: coverage.xml
           if-no-files-found: error
 
+      - name: Create Pip Dependency Tree
+        uses: seansmith39/H6060-Experiment-Resources/.github/actions/python/pip-dependency-tree@main
+
       - name: Create CycloneDX SBOM
         uses: seansmith39/H6060-Experiment-Resources/.github/actions/python/python-sbom@main
 
